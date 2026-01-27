@@ -162,10 +162,7 @@ func (g *Game) Explore(dir Direction, option LocationOption) *Item {
 
 // ShowInventory displays the player's collected items
 func (g *Game) ShowInventory() {
-	fmt.Println()
-	fmt.Println("╔════════════════════════════════════════════════════════════╗")
-	fmt.Println("║" + printer.CenterText("Your Collection", 60) + "║")
-	fmt.Println("╚════════════════════════════════════════════════════════════╝")
+	printer.ShowInventory()
 
 	if len(g.Inventory) == 0 {
 		fmt.Println("\nYour pack is empty. Perhaps you'll find something as you wander...")
@@ -218,20 +215,7 @@ func (g *Game) ShowInventory() {
 // ShowMenu displays the main game menu
 func (g *Game) ShowMenu(scanner *bufio.Scanner) {
 	for {
-		fmt.Println()
-		fmt.Println("╔════════════════════════════════════════════════════════════╗")
-		fmt.Println("║" + printer.CenterText("Menu", 60) + "║")
-		fmt.Println("╠════════════════════════════════════════════════════════════╣")
-		fmt.Println("║  1. View Map                                               ║")
-		fmt.Println("║  2. Detailed Map (with locations)                          ║")
-		fmt.Println("║  3. View Inventory                                         ║")
-		fmt.Println("║  4. Read Journal                                           ║")
-		fmt.Println("║  5. Current Location Info                                  ║")
-		fmt.Println("║  6. Game Statistics                                        ║")
-		fmt.Println("║  7. Return to Journey                                      ║")
-		fmt.Println("╚════════════════════════════════════════════════════════════╝")
-
-		fmt.Print("\nChoose an option (1-7): ")
+		printer.ShowMenu() // prints out the menu in the lib printer
 		if !scanner.Scan() {
 			return
 		}
@@ -241,26 +225,19 @@ func (g *Game) ShowMenu(scanner *bufio.Scanner) {
 		switch choice {
 		case "1":
 			g.ShowMap()
-
 		case "2":
 			g.ShowDetailedMap()
-
 		case "3":
 			g.ShowInventory()
-
 		case "4":
 			g.ShowJournal()
-
 		case "5":
 			g.ShowCurrentLocation()
-
 		case "6":
 			g.ShowStatistics()
-
 		case "7":
 			fmt.Println("\nReturning to your journey...")
 			return
-
 		default:
 			fmt.Println("\nInvalid choice. Please try again.")
 		}
@@ -272,19 +249,13 @@ func (g *Game) ShowMenu(scanner *bufio.Scanner) {
 
 // ShowJournal displays the journey log
 func (g *Game) ShowJournal() {
-	fmt.Println()
-	fmt.Println("╔════════════════════════════════════════════════════════════╗")
-	fmt.Println("║" + printer.CenterText("Your Journey", 60) + "║")
-	fmt.Println("╚════════════════════════════════════════════════════════════╝")
-	fmt.Println()
+	printer.ShowJournal()
 
 	for _, entry := range g.JournalLog {
 		if strings.HasPrefix(entry, "  →") {
-			// Item entries
-			fmt.Println(entry)
+			fmt.Println(entry) // Item entries
 		} else {
-			// Day entries
-			fmt.Println(entry)
+			fmt.Println(entry) // Day entries
 		}
 	}
 	fmt.Println()
@@ -297,11 +268,9 @@ func (g *Game) ShowCurrentLocation() {
 		return
 	}
 
-	fmt.Println()
-	fmt.Println("╔════════════════════════════════════════════════════════════╗")
-	fmt.Println("║" + printer.CenterText("Current Location", 60) + "║")
-	fmt.Println("╚════════════════════════════════════════════════════════════╝")
-	fmt.Println()
+	printer.ShowCurrentLocation()
+
+	// TODO: Move printing function to the printer
 	fmt.Printf("🌿 %s\n", tile.Theme)
 	fmt.Printf("📍 Position: (%d, %d)\n\n", tile.X, tile.Y)
 	fmt.Printf("%s\n\n", tile.Description)
@@ -317,11 +286,7 @@ func (g *Game) ShowCurrentLocation() {
 
 // ShowStatistics displays game statistics
 func (g *Game) ShowStatistics() {
-	fmt.Println()
-	fmt.Println("╔════════════════════════════════════════════════════════════╗")
-	fmt.Println("║" + printer.CenterText("Statistics", 60) + "║")
-	fmt.Println("╚════════════════════════════════════════════════════════════╝")
-	fmt.Println()
+	printer.ShowStatistics()
 
 	fmt.Printf("🗓️  Days Traveled: %d\n", g.TurnCount)
 	fmt.Printf("🗺️  Locations Discovered: %d\n", len(g.Map))

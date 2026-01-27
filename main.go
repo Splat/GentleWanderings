@@ -14,12 +14,6 @@ func main() {
 	game := lib.NewGame()
 	scanner := bufio.NewScanner(os.Stdin)
 
-	fmt.Println("╔═══════════════════════════════════════════════════════════╗")
-	fmt.Println("║           Welcome to Gentle Wanderings                    ║")
-	fmt.Println("║         A Cozy Map-Making Adventure                        ║")
-	fmt.Println("╚═══════════════════════════════════════════════════════════╝")
-	fmt.Println()
-
 	currentTile := game.GetTile(game.CurrentX, game.CurrentY)
 	fmt.Printf("🌿 %s\n", currentTile.Theme)
 	fmt.Printf("%s\n", currentTile.Description)
@@ -51,16 +45,12 @@ func main() {
 		switch input {
 		case "menu":
 			game.ShowMenu(scanner)
-
 		case "m", "map":
 			game.ShowMap()
-
 		case "i", "inv", "inventory":
 			game.ShowInventory()
-
 		case "j", "journal":
 			game.ShowJournal()
-
 		case "q", "quit":
 			fmt.Println()
 			fmt.Println("╔════════════════════════════════════════════════════════════╗")
@@ -72,7 +62,6 @@ func main() {
 			fmt.Println("Thank you for wandering with us. Until next time... 🌙✨")
 			fmt.Println()
 			return
-
 		default:
 			// Try to parse as a direction number
 			choice, err := strconv.Atoi(input)
