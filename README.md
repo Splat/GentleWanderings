@@ -104,6 +104,7 @@ To evolve gameplay, consider adding:
 8. **Confrontation**: Currnetly there are no consequences or decision making beyond the map.
 9. **Map Printing**: This is wonky. The map should render a 1 character border around the explored and fill in the rest with # to represent a fog.
 
+
 ## Example Play Session
 
 ```
