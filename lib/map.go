@@ -1,6 +1,7 @@
 package lib
 
 import (
+	"GentleWanderings/lib/printer"
 	"fmt"
 	"strings"
 )
@@ -124,7 +125,7 @@ func (g *Game) ShowMap() {
 
 	fmt.Println()
 	fmt.Println("╔" + strings.Repeat("═", width*4-1) + "╗")
-	fmt.Println("║" + CenterText("Your Map", width*4-1) + "║")
+	fmt.Println("║" + printer.CenterText("Your Map", width*4-1) + "║")
 	fmt.Println("╠" + strings.Repeat("═", width*4-1) + "╣")
 
 	for y := maxY; y >= minY; y-- {
@@ -187,7 +188,7 @@ func (g *Game) ShowDetailedMap() {
 
 	fmt.Println()
 	fmt.Println("╔════════════════════════════════════════════════════════════╗")
-	fmt.Println("║" + CenterText("Detailed Map", 60) + "║")
+	fmt.Println("║" + printer.CenterText("Detailed Map", 60) + "║")
 	fmt.Println("╚════════════════════════════════════════════════════════════╝")
 	fmt.Println()
 
